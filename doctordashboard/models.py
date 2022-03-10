@@ -21,8 +21,37 @@ class User(AbstractUser):
     role =  models.ForeignKey(Role, on_delete = models.CASCADE)
     first_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
+    bday = models.DateField(auto_now=False, auto_now_add=False)
     email =  models.EmailField()
     phone_number =  models.CharField(max_length=8)
+    address =  models.CharField(max_length = 50)
+   
+    MARRIED = 'M'
+    SINGLE = 'S'
+    DIVORCED = 'D'
+    LEGALY_SEPARATED = 'L'
+    WIDOWED = 'W'
+    MARTIAL_STATUS = [ 
+      (MARRIED, 'M'),
+      (SINGLE, 'S'),
+      (DIVORCED, 'D'),
+      (LEGALY_SEPARATED, 'L'0\),
+      (WIDOWED, 'W')
+     ]
+    MartialStatus = models.CharField(max_length=1, blank= True,  choices= MARTIAL_STATUS)
+    
+   #in case of emergency 
+   E_firstName = models.CharField(max_length = 50)
+   E_lastName = models.CharField(max_length = 50)
+   E_relationship = models.CharField(max_length = 50)
+   E_phoneNumber =  models.CharField(max_length=8)
+   
+   #finance 
+   salary = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+   bank = models.CharField(max_length=50)
+   account_number = models.CharField(max_length=20)
+   
+   #additonal documents 
 
 
 class Room(models.Model):
